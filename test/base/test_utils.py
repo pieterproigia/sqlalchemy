@@ -1702,13 +1702,9 @@ class SymbolTest(fixtures.TestBase):
 
         assert sym1 is sym2
 
-        # default
-        s = util.pickle.dumps(sym1)
-        sym3 = util.pickle.loads(s)
-
-        for protocol in 0, 1, 2:
+        for protocol in -1, 0, 1, 2:
             print(protocol)
-            serial = util.pickle.dumps(sym1)
+            serial = util.pickle.dumps(sym1, protocol)
             rt = util.pickle.loads(serial)
             assert rt is sym1
             assert rt is sym2
